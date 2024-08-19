@@ -11,7 +11,7 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
 
--- Intenting
+-- Indenting
 vim.opt.smartindent = true
 
 -- Search
@@ -40,3 +40,15 @@ vim.cmd("highlight ColorColumn ctermbg=lightgrey guibg=lightgrey")
 vim.cmd("highlight WhiteSpaceEOL ctermbg=darkgreen guibg=lightgreen")
 vim.cmd("match WhiteSpaceEOL /\\s\\+$/")
 vim.cmd("autocmd WinEnter * match WhiteSpaceEOL /\\s\\+$/")
+
+local opts = { noremap = true }
+
+-- Make it easier to jump between splits.
+vim.keymap.set('n', '<c-h>', '<c-w>h', opts)
+vim.keymap.set('n', '<c-j>', '<c-w>j', opts)
+vim.keymap.set('n', '<c-k>', '<c-w>k', opts)
+vim.keymap.set('n', '<c-l>', '<c-w>l', opts)
+
+-- Move block selected with <S-v>
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", opts)
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", opts)
