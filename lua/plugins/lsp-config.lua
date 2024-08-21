@@ -7,7 +7,6 @@ return {
     },
     {
 
-        -- TODO: See https://docs.yoctoproject.org/dev/dev-manual/read-only-rootfs.html
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
@@ -21,9 +20,18 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function()
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup({})
+
+
+            lspconfig.ccls.setup({
+                capabilitles = capabilities,
+            })
+            lspconfig.lua_ls.setup({
+                capabilitles = capabilities,
+            })
             lspconfig.pylsp.setup({
+                capabilitles = capabilities,
                 settings = {
                     pylsp = {
                         plugins = {
