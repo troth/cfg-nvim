@@ -57,6 +57,7 @@ return {
 
                         base = "#dddddd",
                         mantle = "#d0d0d0",
+                        crust = "#000000",
                         overlay0 = "#777777",
                         surface1 = "#888888",
                         text = "#000000",
