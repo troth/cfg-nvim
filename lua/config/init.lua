@@ -5,6 +5,10 @@ vim.opt.compatible = false
 vim.opt.mouse = "v"
 vim.opt.mouse = "a"
 
+-- All copy/paste from clipboard and with middle mouse selection.
+-- NOTE: Need to `apt install xsel wl-clipboard`
+vim.opt.clipboard ="unnamed"
+
 -- Tabs
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
