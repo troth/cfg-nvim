@@ -20,18 +20,20 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function()
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local lspconfig = require("lspconfig")
-
-
-            lspconfig.ccls.setup({
-                capabilitles = capabilities,
+            vim.lsp.config('*', {
+                capabilities = {
+                    textDocument = {
+                        semanticTokens = {
+                            multilineTokenSupport = true,
+                        }
+                    }
+                }
             })
-            lspconfig.lua_ls.setup({
-                capabilitles = capabilities,
-            })
-            lspconfig.pylsp.setup({
-                capabilitles = capabilities,
+
+            -- vim.lsp.config('ccls')
+            -- vim.lsp.config('lua_ls')
+
+            vim.lsp.config('pylsp', {
                 settings = {
                     pylsp = {
                         plugins = {
