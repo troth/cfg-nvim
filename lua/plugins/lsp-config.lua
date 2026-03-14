@@ -13,6 +13,7 @@ return {
                 ensure_installed = {
                     "lua_ls",
                     "pylsp",
+                    "clangd",
                 }
             })
         end
@@ -20,19 +21,8 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function()
-            vim.lsp.config('*', {
-                capabilities = {
-                    textDocument = {
-                        semanticTokens = {
-                            multilineTokenSupport = true,
-                        }
-                    }
-                }
-            })
-
-            -- vim.lsp.config('ccls')
-            -- vim.lsp.config('lua_ls')
-
+            vim.lsp.config('clangd', {})
+            vim.lsp.config('lua_ls', {})
             vim.lsp.config('pylsp', {
                 settings = {
                     pylsp = {
@@ -45,9 +35,20 @@ return {
                 }
             })
 
+            vim.lsp.config('*', {
+                capabilities = {
+                    textDocument = {
+                        semanticTokens = {
+                            multilineTokenSupport = true,
+                        }
+                    }
+                }
+            })
+
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
             vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
             vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
+
         end
     }
 }
