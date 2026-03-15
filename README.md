@@ -37,26 +37,49 @@ so following sections are probably no longer needed.
 
 ### Installing C/C++ Language Server
 
-Need to install `ccls` LSP server with `apt install ccls`.
+Need to install `clangd` LSP server with `apt install clangd`.
 
-For navigating C/C++ code in a project, you need to add a `.ccls` file at the
-root of the each project with something like the following:
+There are two ways to configure it in a project:
 
-    $ cat .ccls
-    clang++
-    %c -std=c11
-    %cpp -std=c++11
-    -I<path>
-    <other-cflags>
-    <other-cxxflags>
+* Create a `compile_flags.txt` file at root of project.
 
-Could also provide a `compile_commands.json` file, but I've not tried that yet.
+  This is the easier of the two. Just add compiler flags, one per line, to the
+  file. For example:
 
-For more information, see:
+      $ cat compile_flags.txt
+      -Wall
+      -mcpu=cortex-m4
+      -mfpu=fpv4-sp-d16
+      -mfloat-abi=hard
+      -mthumb
+      -DUSE_HAL_DRIVER
+      -DSTM32G474xx
+      -ICore/Inc
+      -IDrivers/STM32G4xx_HAL_Driver/Inc
+      -IDrivers/STM32G4xx_HAL_Driver/Inc/Legacy
+      -IDrivers/CMSIS/Device/ST/STM32G4xx/Include
+      -IDrivers/CMSIS/Include
 
-* https://github.com/MaskRay/ccls/wiki/Project-Setup#ccls-file
+* Create a `compile_commands.json` file at root of project.
 
-Didn't have any luck getting the `clangd` lsp server working yet.
+  This is more complicated.
+
+  If you are using a CMake based project, then you can have CMake generate the
+  file.
+
+  For Makefile based projects, there are a couple of tools to try:
+
+  + **Bear** (`apt install bear`):
+
+        $ bear -- make all
+
+  + **compiledb** (`pip install compiledb`):
+
+        $ compiledb make
+
+Using `ccls` used to work, but with the upgrade to `nvim-0.11.x` and upgrading
+`nvim-lsp-config` it doesn't seem to work, hence have switched to using
+`clangd`.
 
 ### Installing Python Language Server
 
