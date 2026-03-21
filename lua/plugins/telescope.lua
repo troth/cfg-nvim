@@ -2,8 +2,6 @@ return {
     {
         'nvim-telescope/telescope.nvim',
         tag = 'v0.2.1',
-        -- or
-        -- branch = '0.1.x',
         dependencies = {
             'nvim-lua/plenary.nvim',
             -- optional but recommended
@@ -12,6 +10,25 @@ return {
 
         config = function()
             local builtin = require("telescope.builtin")
+            require("telescope").setup({
+                defaults = {
+                    hidden = true,
+                },
+                pickers = {
+                    find_files = {
+                        -- Need to install fd-find package in OS.
+                        find_command = {
+                            "fdfind",
+                            "--no-ignore-vcs",
+                            "--type", "file",
+                            "--exclude", "tmp",
+                            "--exclude", ".git",
+                            "--exclude", ".repo",
+                        },
+                        hidden = true,
+                    },
+                },
+            })
             vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
             vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
