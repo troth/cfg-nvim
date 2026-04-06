@@ -1,5 +1,6 @@
 -- General configuration options
 vim.opt.compatible = false
+vim.opt.confirm = true
 
 -- Mouse Support
 vim.opt.mouse = "v"
