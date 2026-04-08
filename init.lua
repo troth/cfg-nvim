@@ -5,4 +5,4 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 require('config.init')
-require('config.lazy')
+require('config.packages')
