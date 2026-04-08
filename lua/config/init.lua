@@ -18,6 +18,7 @@ vim.opt.tabstop = 4
 
 -- Indenting
 vim.opt.smartindent = true
+vim.opt.autoindent = true
 
 -- Search
 vim.opt.hlsearch = true
@@ -28,6 +29,8 @@ vim.opt.number = true
 vim.opt.cc = "80"
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 8
+vim.opt.wrap = false
+vim.opt.cursorline = true
 
 -- Undo
 vim.opt.swapfile = false
