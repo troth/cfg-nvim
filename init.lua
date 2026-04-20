@@ -4,5 +4,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-require('config.init')
-require('config.packages')
+vim.opt.termguicolors = true
+vim.cmd.colorscheme('openavr-light')
+
+require('config.options')
+require('config.pack')
+require('config.diagnostics')
+require('config.keymaps')
